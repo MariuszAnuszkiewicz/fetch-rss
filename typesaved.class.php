@@ -8,7 +8,7 @@ interface SaveStrategy {
 class SimpleSaveCsv implements SaveStrategy {
 
     public function run($data) {
-
+        
         $source = WEBROOT.DS."upload/simple.csv";
         if(!file_exists($source)) {
             fopen($source, "w+");
