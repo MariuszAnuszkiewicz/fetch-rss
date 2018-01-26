@@ -1,0 +1,32 @@
+
+#rss_content{
+
+    position: absolute;
+    top: 70px;
+    left: 7px;
+    width: 750px;
+    height: auto;
+    display: block;
+    background-color: #f2f2f2;
+
+}
+
+#submit_alert{
+
+    position: absolute;
+    top: 37px;
+    left: 7px;
+    width: 55px;
+    height: 25px;
+    display: block;
+    background-color: #ff4444;
+
+}
+
+#submit_alert p{
+
+    color: seashell;
+    margin-top: 3px;
+    margin-left: 3px;
+
+}
