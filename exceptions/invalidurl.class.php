@@ -1,6 +1,8 @@
 <?php
 
-class InvalidUrl extends Exception {
+class InvalidUrlException extends Exception {}
+
+class InvalidUrl {
 
     private $_invalid_url;
 
@@ -18,7 +20,7 @@ class InvalidUrl extends Exception {
 
         if ($this->getStatus() === true){
 
-            throw new Exception("Invalid RSS feed URL.");
+            throw new InvalidUrlException("Invalid RSS feed URL.");
         }
         return;
     }

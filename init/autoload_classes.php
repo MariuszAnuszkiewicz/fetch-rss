@@ -12,22 +12,17 @@ if (!defined('WEBROOT')) {
 
 function autoloadClasses($class) {
 
-    $class_name = ltrim($class, '\\');
-    $pos_start = strlen($class_name);
-    $file_exception = ROOT.DS.'exceptions'.DS.str_replace('\\', DS, strtolower($class_name)) . '.class.php';
+    $pos_start = strripos($class, '\\');
+    $pos_end = strlen($class);
+    $class_name = substr(ltrim($class), $pos_start, $pos_end);
+    $file_class = ROOT . DS . str_replace('\\', DS, strtolower($class_name)) . '.class.php';
+    $file_exception = ROOT . DS . 'exceptions'. DS . str_replace('\\', DS, strtolower($class)) . '.class.php';
 
-    if ($pos_end = strripos($class, '\\')) {
-
-        $namespace = substr($class, $pos_start, $pos_end);
-        $class_name = substr($class, $pos_end + 1);
-        $file_class = str_replace('\\', DS, $namespace);
-        $file_class .= ROOT . DS . str_replace('\\', DS, strtolower($class_name)) . '.class.php';
-
+    if($pos_start) {
         if (is_readable($file_class)) {
             require_once "$file_class";
         }
     }
-
     else if (is_readable($file_exception)){
         require_once "$file_exception";
     }
@@ -37,3 +32,4 @@ function autoloadClasses($class) {
 }
 
 spl_autoload_register('autoloadClasses');
+

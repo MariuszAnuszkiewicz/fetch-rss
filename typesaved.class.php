@@ -27,11 +27,7 @@ class ExtendedSaveCsv implements SaveStrategy {
 
     public function run($data) {
 
-        $old_source = WEBROOT.DS."upload/simple.csv";
         $new_source = WEBROOT.DS."upload/extended.csv";
-        $old_file = fopen($old_source, "a+");
-        $str_data = implode(", ", $data);
-        $len = strlen($str_data);
 
         if(!file_exists($new_source)) {
             fopen($new_source, "a+");
@@ -39,13 +35,18 @@ class ExtendedSaveCsv implements SaveStrategy {
         if(filesize($new_source) > 120000){
             unlink($new_source);
         }
+
+        $old_source = WEBROOT.DS."upload/simple.csv";
+        $old_file = fopen($old_source, "a+");
+        $str_data = implode(", ", $data);
+        $len = strlen($str_data);
+
         $read_old = fread($old_file, $len);
         $this->_data[] = $read_old;
 
         $combine_data = array_merge($data, $this->_data);
         $new_file = fopen($new_source, "a+");
         foreach ($combine_data as $line) {
-
             fputcsv($new_file, explode(", ", $line));
         }
         fclose($new_file);

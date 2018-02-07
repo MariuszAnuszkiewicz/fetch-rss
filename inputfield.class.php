@@ -6,13 +6,13 @@ class InputField {
 
        switch($type){
 
-           case 'post' :
+           case 'post':
                 return (!empty($_POST)) ? true : false;
                 break;
-           case 'get' :
+           case 'get':
                 return (!empty($_GET)) ? true : false;
                 break;
-           default  :
+           default :
                 return false;
                 break;
 

@@ -51,8 +51,8 @@ class FetchData {
                         </div>
                        <?php
 
-                       $typeSave = new TypeSaved('simple', new SimpleSaveCsv);
-                       $simple_run = $typeSave->load();
+                       $simpleSave = new TypeSaved('simple', new SimpleSaveCsv);
+                       $simple_run = $simpleSave->load();
                        $simple_run->run($this->_data);
 
                        $extendedSave = new TypeSaved('extended', new ExtendedSaveCsv);
@@ -67,9 +67,9 @@ class FetchData {
 
                    $config = new \InvalidUrl();
                    $config->setStatus(true);
-                   echo $config->checkUrl();
+                   $config->checkUrl();
 
-               } catch(\Exception $e) {
+               } catch(\InvalidUrlException $e) {
 
                    echo $e->getMessage();
 
